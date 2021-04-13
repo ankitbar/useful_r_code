@@ -1,5 +1,3 @@
-rm(list = ls())
-
 # Output is a data frame with line numbers, line text and function used in the package
 get_lib_depend <- function(script_path,package_name){
   
@@ -44,13 +42,10 @@ get_lib_depend <- function(script_path,package_name){
 }
 
 # Unit test
+rm(list = ls())
 
-script_path <- "E://Unilever Growth Driver CCBT Analysis (18-AIM-2817)/Ankit B/v2_testing/Functions_BSTS.R"
-package_names <- c("dplyr", "reshape", "tidyr", "openxlsx", "xlsx", "tools", "readxl", "readr", "stringr",
-                    "gtools", "igraph", "tibble", "combinat", "data.table", "forecast", "zoo", "smooth",
-                    "janitor", "Metrics", "lubridate", "bsts", "caret", "xgboost",
-                    "mpmi", "roxygen2", "devtools", "tidyverse", "rstudioapi", "filesstrings", "foreach", "doParallel",
-                    "fBasics","reshape2", "gridExtra", "grid","pdftools")
+script_path <- "your_scrip_path.R"
+package_names <- c("dplyr", "pdftools", "openxlsx")
 output_path <- dirname(script_path)
 dependency_list <- list()
 for (package_name in package_names){
@@ -61,7 +56,6 @@ for (package_name in package_names){
 
 overall_dependency <- do.call(rbind.data.frame,dependency_list)
 rownames(overall_dependency) <- NULL
-
 
 package_name_df <- cbind.data.frame("package_name" = package_names,"loaded" = c(T))
 overall_dependency <- merge(overall_dependency,package_name_df,by = "package_name",all.y = T)
