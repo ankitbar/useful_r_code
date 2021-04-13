@@ -1,2 +1,2 @@
 # useful_r_code
-R code which can help life easier
+Random R scripts that can help with package management in R.
